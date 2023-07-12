@@ -1,0 +1,53 @@
+.featuredGame {
+    margin: 8px;
+    overflow: hidden;
+    border-radius: 5px;
+    transition: 0.3s;
+    position: relative;
+    cursor: pointer;
+    
+
+    & .gradientSmoothOut {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transition: 0.3s;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+        opacity : 1;
+    }
+
+    & .gradientSmoothOver {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        transition: 0.3s;
+        background-image: linear-gradient(to right, rgba(252, 0, 255, 0.9), rgba(0, 219, 222, 0.9));
+        opacity : 0;
+        transform: translateY(90);
+    }
+
+    & .featuredGameLogo {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: 0.3s;
+    }
+
+    & .site {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 65%;
+        font-size: 23px;
+        color: white;
+        transition: 0.3s;
+        opacity: 0;
+
+    }
+
+}

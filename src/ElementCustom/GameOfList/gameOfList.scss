@@ -1,0 +1,51 @@
+
+
+.gameOfList {
+    margin: 25px 40px;
+    height: 470px;
+
+    & .gameInfo {
+        margin: 15px;
+
+        & .title {
+            font-size: 23px;
+            font-family: 'Wix Madefor Text';
+        }
+
+        & .updateDate {
+            margin-top: 10px;
+        }
+
+        & .gender {
+            margin-top: -10px;
+        }
+
+        & .value {
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Wix Madefor Text';
+        }
+
+        & .key {
+            font-size: 18px;
+            font-family: 'Wix Madefor Text';
+            width: 130px;
+        }
+
+        & button {
+            margin-top: 5px;
+            background: 0;
+            font-size: 20px;
+            font-family: 'Poppins';
+            font-weight: bold;
+            height: 47px;
+            width: 160px;
+            transition: 0.5s;
+        }
+
+        & button:hover {
+            height: 51px;
+            width: 170px;
+        }
+    }
+}

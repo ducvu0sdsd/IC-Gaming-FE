@@ -1,0 +1,229 @@
+
+.link {
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+}   
+
+.link:hover {
+    color: red;
+}
+
+.header {
+    background-color: white;
+    color : black;
+    height: 60px;
+    display: flex;
+    font-family: 'Poppins';
+    position: fixed;
+    top: 0;
+    z-index: 5;
+
+    & .iconMobile {
+        height: 100%;
+        font-size: 35px;
+        width: 50px;
+        margin-left: 10px;
+        line-height: 60px;
+        display: none;
+    }
+
+    & .logo {
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        cursor: pointer;
+        width: 220px;
+    
+        & #subLogo {
+            width: 70%;
+            height: 85%;
+            font-weight: 600;
+            margin-left: 5px;
+
+            & #title {
+                font-size: 1.4rem;
+            }
+
+            & #description {
+                margin-top: -22px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    & #search {
+        height: 100%;
+        margin-left: 2%;
+        display: flex;
+        justify-content: end;
+        position: absolute;
+        right: -10px;
+
+        & .icon-search  {
+            color: #6b6b6b;
+        }
+
+        & #txtsearch {
+            width: 70%;
+            height: 60%;
+            border: 1px solid #999;
+            margin-top: 12px;
+            font-weight: 700;
+            margin-right: 20px;
+            padding-left: 30px;
+        }
+
+        & #btnsearch {
+            margin-left: 5px;
+            height: 55%;
+            width: 22%;
+            margin-top: 15px;
+        }
+
+        & #areaResultSearch {
+            height: 0px;
+            width: 65%;
+            background-color: white;
+            transition: 0.5s;
+            border-radius: 0 0 10px 10px;
+            position: absolute;
+            top: 60px;
+            left: 25%;
+            overflow-y: auto;
+
+            & .item {
+                display: flex;
+                align-items: center;
+                height: 60px;
+                border-bottom: 1px solid rgb(190, 185, 185);
+
+                & .image {
+                    margin-left: 3%;
+                }
+
+                & .name {
+                    font-size: 14px;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    & #menu {
+        height: 100%;
+        display: flex;
+        position: relative;
+
+        & li {
+            margin-left: 30px;
+            text-decoration: none;
+            list-style: none;
+            font-weight: 900;
+            font-size: 19px;
+            margin-top: 3px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3;
+            color: black;
+            position: relative;
+
+
+            & .sub_menu_game{
+                position: absolute;
+                left: 0px;
+                top: 57px;
+                height: 0;
+                transition: 0.2s;
+                width: 250px;
+                background-color: rgba(253, 252, 252, 0.967);
+                border-radius: 0px 0px 9px 9px;
+                overflow: hidden;
+ 
+                & ul {
+                    height: 90%;
+
+                    & li {
+                        height: 40px;
+                        margin-left: -15px;
+                        margin-top: 8px;
+                        display: flex;
+                        justify-content: left;
+                        font-size: 16px;
+
+                        & #gameImage {
+                            height: 35px;
+                            width: 35px;
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        & li:hover {
+            transition: 0.3s;
+            color: red;
+        }
+
+        & li:hover i {
+            transform: rotate(180deg);
+            color: red;
+        }
+
+        & li:not(:hover) {
+            transition: 0.3s;
+            color: black;
+        }
+
+        & i {
+            margin-left: 3px;
+            transition: 0.3s;
+        }
+
+        & li:not(:hover) i {
+            transform: rotate(360deg);
+            color: black;
+        }
+
+    }
+}
+
+
+@media screen and (min-width: 100px) and (max-width: 1200px) {
+    .header {
+        height: 55px;
+
+        & #menu, & #search {
+            display: none;
+        }
+
+        & .logo {
+            // background-color: aqua;
+            width: 170px;
+
+            & img {
+                display: none;
+            }
+
+            & #subLogo {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        & .iconSearch {
+            position: absolute;
+            right: 10px;
+        }
+
+        & .iconMobile {
+            display: block;
+        }
+    }
+}

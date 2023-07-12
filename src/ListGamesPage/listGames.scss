@@ -1,0 +1,55 @@
+
+
+#listGames {
+    background-color: #f3f3f3;
+
+    & .menuGames {
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid #d7d4d4;
+
+        & .menu {
+            display: flex;
+            
+            & .menuItem {
+                font-size: 19px;
+                font-family: 'Poppins';
+                line-height: 45px;
+                padding: 0 15px;
+                cursor: pointer;
+                transition: 0.3s;
+                border-bottom: 1px solid #d7d4d4;
+                transform: translateX(30px);
+                font-weight: bold;
+            } 
+
+            & .menuItem:hover {
+                background-color: #d7d4d4;
+            } 
+
+            & .active {
+                background-color: #d7d4d4;
+                border-bottom: 1px solid #f65353;
+            }
+        }
+    }
+}
+.link:hover {
+    color: black;
+} 
+.menuVideosMobile {
+    display: none;
+}
+
+@media screen and (min-width: 100px) and (max-width: 1200px) {
+    #listGames {
+        & .menuGames {
+            display: none;
+        }
+    }
+    .menuVideosMobile {
+        display: block;
+        transform: translateY(40px);
+        margin-left: 35px;
+    }
+}

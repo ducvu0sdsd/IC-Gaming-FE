@@ -1,0 +1,129 @@
+
+
+#videosReview {
+    // background-color: aqua;
+
+    & .titleVideosReview {
+        font-family: 'Wix Madefor Text';
+        font-weight: bold;
+        font-size: 40px;
+        text-align: center;
+        margin: 0;
+        margin-bottom: 30px;
+    }
+
+    & .menuVideosReview {
+        display: flex;
+        justify-content: center;
+        border-bottom: 2px solid #d7d4d4;
+
+        & .menu {
+            display: flex;
+            
+            & .menuItem {
+                font-size: 20px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                line-height: 45px;
+                padding: 0 15px;
+                cursor: pointer;
+                transition: 0.3s;
+                border-bottom: 2px solid #d7d4d4;
+                transform: translateX(30px);
+            } 
+
+            & .menuItem:hover {
+                background-color: #d7d4d4;
+            } 
+
+            & .active {
+                background-color: #d7d4d4;
+                border-bottom: 2px solid #f65353;
+            }
+        }
+    }
+
+    & .listVideoItem  {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        &  .videoItem  {
+            background-color: white;
+            margin: 10px 10px;
+            height: 370px;
+            box-shadow: 3px 3px 2px rgba(106, 105, 105, 0.2);
+            transition: 0.5s;
+            cursor: pointer;
+
+            & .videoImage {
+                height: 55%;
+                // background-color: #f65353;
+            }
+
+            & .videoDate {
+            
+                font-family: 'Wix Madefor Text';
+                font-size: 18px;
+                padding: 0 10px;
+    
+                & span {
+                    margin: 0 15px 0 0px;
+                }
+    
+                & .title {
+                    color: red;
+                }
+    
+            }
+
+            & .item {
+                margin: 0 0 5px 0;
+            }
+
+            & .videoTitle {
+                padding: 0 10px;
+                font-weight: 600;
+                font-size: 20px;
+            }
+        }
+    }
+
+    & .menuVideosMobile {
+        margin-top: 30px;
+        margin-left: 15px;
+        display: none;
+    }
+}
+
+@media screen and (min-width: 100px) and (max-width: 1200px) {
+    #videosReview {
+
+        & .titleVideosReview {
+            font-size: 30px;
+            margin-bottom: -40px;
+        }
+
+        & .menuVideosReview {
+            display: none;
+        }
+        
+        & .menuVideosMobile {
+            display: block;
+        }
+
+    }
+
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+
+    .listVideoItem {
+
+        & .videoItem {
+
+            & .videoTitle {
+                font-size: 16px;
+            }
+        }
+    }
+}

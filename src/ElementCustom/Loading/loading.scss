@@ -1,0 +1,36 @@
+
+
+#loading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .formLoading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & .rotate-img {
+            animation: rotate 5s linear infinite;
+        }
+
+        & p {
+            font-family: 'Poppins';
+            font-weight: bold;
+            font-size: 33px;
+            color: #999;
+            margin-left: 15px;
+            margin-top: 20px;
+        }
+    }
+      
+    @keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+    }
+}

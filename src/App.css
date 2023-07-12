@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+.boxParent {
+    height: 60px;
+    width: 100%;
+    background-color: #f3f3f3;
+}
+
+.boxChildren {
+    height: 30px;
+    width: 100%;
+    background-color: #f3f3f3;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}
+
+.App {
+    overflow: hidden;
+    position: relative;
+}
+
+#effectOpacity {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(52, 51, 51, 0.0);
+    left: 0;
+    z-index: 10;
+    display: none;
+    transition: 0.5s;
+}
