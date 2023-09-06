@@ -26,7 +26,7 @@ function Footer() {
                     </div>
                     <div className="col-lg-12 col-11" style={{display:'flex', justifyContent : 'center',marginBottom : '20px'}}>
                         <div className="col-lg-8 col-7 aboutMe">
-                        IC GAMING DOWNLOAD Is a Wed Site Downloading Game Link Google Drive Free, Good Height Including: Original Game, MODS Game, Wrong Vietnamese Game To Help Players Have The Best Experience When Playing
+                        IC GAMING DOWNLOAD Is a Wed Site Downloading Game Link Google Drive Free, Good Height Including: Original Game, MODS Game To Help Players Have The Best Experience When Playing
                         </div>
                         <div  className="col-lg-4 col-4 contact" >
                             <div className="col-lg-12 icon">

@@ -133,7 +133,7 @@ function GameDetailPage({game, isSecond}) {
     return ( 
         <div className='gameDetail'>
             <div className='boxChildren'></div>  
-            <GamesRandom type={'Game PC'} />
+            {/* <GamesRandom type={'Game PC'} /> */}
             <div className='boxChildren'></div>  
             <div className='col-lg-12 gameInfo '>
                 <div id='infoPC' className='col-lg-4 info item'>

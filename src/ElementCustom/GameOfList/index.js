@@ -29,7 +29,7 @@ function GameOfList({game}) {
                     <p className='key'>Gender </p>
                     <p className='value'>: {game.gender}</p>
                 </div>
-                <Link onClick={handle.handleScrollUp} to={`/games/${game.title.toLowerCase().split(' ').join('-')}`}><button>Offcial Site</button></Link>
+                <Link onClick={handle.handleScrollUp} to={`/games/${game.title.toLowerCase().split(' ').join('-')}`}><button>Official Site</button></Link>
             </div>
         </div>
      );

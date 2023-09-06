@@ -6,8 +6,7 @@ function Provider({children}) {
 
     let handle = {
         handleScrollDown : () => {
-            window.scrollTo(
-                0,  document.documentElement.scrollHeight)
+            
         },
         handleScrollUp : () => {
             window.scrollTo({top: 0, behavior : 'smooth'})
@@ -22,7 +21,6 @@ function Provider({children}) {
         .then (d => {
             const endTime = performance.now();
             const elapsedTime = endTime - startTime;
-            console.log('Thời gian phản hồi:', elapsedTime, 'ms');
             setGames(d)
         })
     }, [])
