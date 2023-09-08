@@ -1,14 +1,12 @@
 
 
 import './gameDetailPage.scss'
-import {useEffect, useRef} from 'react'
-import GamesRandom from '../ListGamesPage/GamesRandom'
+import {useEffect, useRef, useState} from 'react'
+import ModsElement from '../ModsPage/ModsElement'
 import $ from 'jquery'
 import logo_gg_drive from '../ggdrivelogo.png'
 import logo from '../icgaming.png'
-import logoCVB from '../vcb.webp'
-import logoMomo from '../momo.png'
-import logoZalo from '../zalo.webp'
+import Criteria from '../ModsPage/Criteria'
 import logoPaypal from '../paypal.png'
 import YouTube from 'react-youtube';
 import myVideo from './getlink.mp4'
@@ -24,6 +22,36 @@ function GameDetailPage({game, isSecond}) {
 
 
     const listImages = game.images
+
+    const [mods, setMods] = useState([])
+  const [criterias , setCriterias] = useState([])
+  const [origins , setOrigins] = useState([])
+  useEffect(() => {
+    axios.get(`https://ic-gaming-node-js.vercel.app/mods/mod-api-v1`)
+      .then(res =>{
+          setMods(res.data)
+          let arr1 = []
+          res.data.forEach(mod => {
+            let arr = criterias
+            arr.push(mod.criteria+ '-' + mod.originGame)
+            arr1 = arr
+          })
+          let arr = []
+          arr1.forEach(item => {
+              if (!arr.includes(item)) {
+                arr.push(item)
+              }
+          })
+          setCriterias(arr)
+          let arr2 = []
+          arr1.forEach(item => {
+            if (!arr2.includes(item.split('-')[1])) {
+              arr2.push(item.split('-')[1])
+            }
+          }) 
+          setOrigins(arr2)
+      })
+  }, [])
 
 
     useEffect(() => {
@@ -129,11 +157,14 @@ function GameDetailPage({game, isSecond}) {
     const handleUpdateSecond = (index, game) => {
         axios.put('https://ic-gaming-node-js.vercel.app/game/update-second-game', {gameID : game._id})
     }
+    const [num, setNum] = useState(0)
+    const handleChangeCriteria = (n) => {
+        setNum(n)
+    }
 
     return ( 
         <div className='gameDetail'>
-            <div className='boxChildren'></div>  
-            {/* <GamesRandom type={'Game PC'} /> */}
+            {console.log(origins)}
             <div className='boxChildren'></div>  
             <div className='col-lg-12 gameInfo '>
                 <div id='infoPC' className='col-lg-4 info item'>
@@ -159,12 +190,11 @@ function GameDetailPage({game, isSecond}) {
                     </div>
                     <div className='btns'>
                         <button onClick={() => handleClickDownload()} className='button btnDownload'>Download Free</button>
-                        <button className='button btnDonate' onClick={() => handleClickDonate()}>Donate</button>
                         <button className='button btnDonate'><a href='#getlink' className='aaa'>How To Get Link</a></button>
                     </div>
                     
                 </div>
-                <div className='col-lg-6 col-11 images item'>
+                <div className='col-lg-5 col-12 images item'>
                     <div className='listGames' ref={listGames}>
                         {listImages.map ((image, index) => (
                             <img className='imageGameItem' key={index} src={image}  width='100%' />
@@ -196,19 +226,24 @@ function GameDetailPage({game, isSecond}) {
                     </div>
                     <div className='btns'>
                         <button onClick={() => handleClickDownload()} className='button btnDownload'>Download Free</button>
-                        <button className='button btnDonate' onClick={() => handleClickDonate()}>Donate</button>
                         <button  className='button btnDonate'><a href='#getlink' className='aaa'>How To Get Link</a></button>
                     </div>
                     
                 </div>
             </div>
-            {/* <GamesRandom type={'Game PC'} /> */}
+            <div className='boxChildren'></div>
+            {origins.includes(game.title) ? <>
+                <Criteria origin={game.title} handleChangeCriteria={handleChangeCriteria}/>
+                <div className='boxChildren'></div>
+                <ModsElement origin={game.title} num={num} />
+            </> : <></>}
             <div className='boxParent'></div>
             <div className='col-lg-12 col-12 video_des'>
                 <div className='video col-lg-6 col-11'>
                     <YouTube videoId={game.video} opts={opts}  />
                 </div>
                 <div className='col-lg-4 col-11  des'>
+                    <a name='intro'></a>
                     <h3>Introduce</h3>
                     <div className='description'>
                         {game.description}

@@ -13,18 +13,50 @@ import './App.scss';
 import logo from '../src/icgaming.png'
 import { Link } from 'react-router-dom';
 import Loading from './ElementCustom/Loading'
-import LinkManagerManagerPage from './LinkDownloadPage/LinkManagerPage'
 import axios from 'axios';
 import LinkDownloadPage from './LinkDownloadPage';
+import ModDetail from './ModDetail';
+import ListModsPage from './ListModsPage';
 
 function App() {
 
   const [handle, data] = useContext(Context)
   const [isPC , setIsPC ] = useState(false)
   const [links, setLinks] = useState([])
+  let modList = []
   useEffect(() => {
       axios.get('https://ic-gaming-node-js.vercel.app/links/api')
           .then(res => setLinks(res.data))
+  }, [])
+
+  const [mods, setMods] = useState()
+  const [criterias , setCriterias] = useState([])
+  const [origins , setOrigins] = useState([])
+  useEffect(() => {
+    axios.get(`https://ic-gaming-node-js.vercel.app/mods/mod-api-v1`)
+      .then(res =>{
+          setMods(res.data)
+          let arr1 = []
+          res.data.forEach(mod => {
+            let arr = criterias
+            arr.push(mod.criteria+ '-' + mod.originGame)
+            arr1 = arr
+          })
+          let arr = []
+          arr1.forEach(item => {
+              if (!arr.includes(item)) {
+                arr.push(item)
+              }
+          })
+          setCriterias(arr)
+          let arr2 = []
+          arr1.forEach(item => {
+            if (!arr2.includes(item.split('-')[1])) {
+              arr2.push(item.split('-')[1])
+            }
+          }) 
+          setOrigins(arr2)
+      })
   }, [])
 
   const handleClickPC = () => {
@@ -89,7 +121,7 @@ function App() {
 
   const [haveData, setHaveData] = useState(false)
   const checkData = setInterval(() => {
-    if (data.games.length > 0) {
+    if (data.games.length > 0 && mods != undefined) {
       setHaveData(true)
       clearInterval(checkData)
     }
@@ -106,12 +138,26 @@ function App() {
       setListGames(list)
   }
 
+  const ScrollToTop = () => {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      
+    }, [pathname]);
+  };
+
   return (             
     <div className="App">
-      <Header val = {{ opa : document.querySelector('#effectOpacity'), menu : document.querySelector('#menuMobile'), search : document.querySelector('#searchMobile')}} />
+      <ScrollToTop />
+      <Header criterias={criterias} games={data.games} mods={origins} val = {{ opa : document.querySelector('#effectOpacity'), menu : document.querySelector('#menuMobile'), search : document.querySelector('#searchMobile')}} />
       <div className='boxParent'></div>
       {haveData == true ? 
         <Routes>
+          {criterias.map((cri, index) => {
+            return (<Route key={index} path={'/mods/'+cri.split('-')[1].toLowerCase().split(' ').join('-')+'/' + cri.split('-')[0].toLowerCase().split(' ').join('-')} element={<ListModsPage criteria={cri.split('-')[0]} origin={cri.split('-')[1]} />}/>)
+          })}
+          {mods.map((mod, index) => {
+            return <Route key={index} path={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')} element={<ModDetail mod={mod}/>}  />
+          })}
           <Route path='/' element={<HomePage />} />
           {data.listGamesPC.map((item, index) => {
               return <Route key={index} path={`/list-games/game-origin/${item.toLowerCase().split(' ').join('-')}-games`} element={<ListGamesPage type='Game PC' series={`${item.toLowerCase().split(' ').join('-')}`} />} /> 
@@ -125,7 +171,6 @@ function App() {
           {data.games.map((game, index) => ( 
               <Route key={index} path={`/games/${game.title.toLowerCase().split(' ').join('-')}/is-second`} element={<GameDetailPage game={game} isSecond={true} />}  /> 
           ))}
-          <Route path='/link-manager' element={<LinkManagerManagerPage />} />
           {links.map((link, index) => {
             return <Route key={index} path={`${link.URL.split('app')[1]}`} element={<LinkDownloadPage links={link} />} />
           })}

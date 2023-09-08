@@ -4,7 +4,33 @@ import logo from '../icgaming.png'
 import {useEffect, useRef, useState, useContext} from 'react'
 import { Context } from '../UseContext/Context';
 import { Link } from 'react-router-dom';
-function Header({val}) {
+function Header({val, mods, games, criterias}) {
+
+    let arr = []
+    mods.forEach ((or => {
+        let listCriteria = []
+        criterias.forEach((cri => {
+            if (cri.split('-')[1] == or) {
+                if (!listCriteria.includes(cri.split('-')[0])) {
+                    listCriteria.push(cri.split('-')[0])
+                }
+            }
+        }))
+        arr.push({origin : or, criterias : listCriteria})
+    }))
+
+    let modList = []
+    mods.forEach ((or => {
+        games.forEach((game) => {
+          if (game.title == or ) {
+            arr.forEach(item => {
+                if (or == item.origin) {
+                    modList.push({origin : or, logo : game.logo, criteria : item.criterias[0]})
+                }
+            })
+          }
+        })
+    }))
 
     const [handle, data] = useContext(Context)
 
@@ -25,7 +51,7 @@ function Header({val}) {
             subMenuGamesPCRef.current.style.height = 0
         })
         menuGamesMobileRef.current.addEventListener('mouseover', () => {
-            subMenuGamesMobileRef.current.style.height = 50 * (menuGamesMobile.length ) + 'px'
+            subMenuGamesMobileRef.current.style.height = 50 * (modList.length ) + 'px'
         })
         menuGamesMobileRef.current.addEventListener('mouseout', () => {
             subMenuGamesMobileRef.current.style.height = 0
@@ -101,9 +127,9 @@ function Header({val}) {
                 <li ref={menuGamesMobileRef} className='menu menu_game'>Mods <i className='bx bxs-chevron-down'></i>
                     <div ref={subMenuGamesMobileRef}  className='submenu sub_menu_game'>
                         <ul style={{width:'100%'}}>
-                            {menuGamesMobile.map ((m, index) => (
-                                <li key={index} style={{width:'100%'}}><Link className='link' onClick={handle.handleScrollUp} to={`list-games/game-mod/${m.toLowerCase().split(' ').join('-')}-games`}><div id='gameImage'><img width={'100%'} src={data.MOLogo[index]} /></div> {m}</Link></li>
-                            ))}
+                            {modList.map ((m, index) => {
+                                return <li onClick={() => {window.location.reload()}} key={index} style={{width:'100%'}}><Link to={'/mods/'+m.origin.toLowerCase().split(' ').join('-')+'/' + m.criteria.toLowerCase().split(' ').join('-')} className='link' onClick={handle.handleScrollUp}><div id='gameImage'><img width={'100%'} src={m.logo} /></div> {m.origin}</Link></li>
+                            })}
                         </ul>
                     </div>
                 </li>
