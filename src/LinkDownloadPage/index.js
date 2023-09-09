@@ -14,15 +14,23 @@ function LinkDownloadPage({links}) {
             </div>
             <div className='col-lg-12 title'>
                 <p>{links.title.split('"')[0]}</p>
-                {links.password ? <p>Unzip Password : {links.password}</p> : ''}
+                {links.password ? links.password != '' ? <p>Unzip Password : {links.password}</p> : <></> : <></>}
             </div>
             <div className='links col-12'>
                 {links.links.map((link, index) => {
-                    return <a key={index} href={link} target="_blank" className='link-item'>
-                        <div>
-                            {links.title.split('(')[0].split('"')[0]} - Part {parts[index]}
-                        </div>
-                    </a>
+                    if(links.links.length == 1){
+                        return <a key={index} href={link} target="_blank" className='link-item'>
+                            <div>
+                                {links.title.split('(')[0].split('"')[0]} - Main
+                            </div>
+                        </a>
+                    } else {
+                        return <a key={index} href={link} target="_blank" className='link-item'>
+                            <div>
+                                {links.title.split('(')[0].split('"')[0]} - Part {parts[index]}
+                            </div>
+                        </a>
+                    }
                 })}
             </div>
         </div>
