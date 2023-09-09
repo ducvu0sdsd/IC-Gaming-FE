@@ -171,15 +171,8 @@ function GameDetailPage({game, isSecond}) {
         active.classList.remove('active')
         const element = document.querySelector('.item'+num)
         element.classList.add('active')
-    }
+    }   
 
-    let currentIndex = 0
-    useEffect(() => {
-        setInterval(() => {
-            currentIndex += 1
-            handleChangeCriteria(currentIndex)
-        }, 4500)
-    }, [])
 
     return ( 
         <div className='gameDetail'>
