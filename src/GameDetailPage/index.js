@@ -24,34 +24,38 @@ function GameDetailPage({game, isSecond}) {
     const listImages = game.images
 
     const [mods, setMods] = useState([])
-  const [criterias , setCriterias] = useState([])
-  const [origins , setOrigins] = useState([])
-  useEffect(() => {
-    axios.get(`https://ic-gaming-node-js.vercel.app/mods/mod-api-v1`)
-      .then(res =>{
-          setMods(res.data)
-          let arr1 = []
-          res.data.forEach(mod => {
-            let arr = criterias
-            arr.push(mod.criteria+ '-' + mod.originGame)
-            arr1 = arr
-          })
-          let arr = []
-          arr1.forEach(item => {
-              if (!arr.includes(item)) {
-                arr.push(item)
-              }
-          })
-          setCriterias(arr)
-          let arr2 = []
-          arr1.forEach(item => {
-            if (!arr2.includes(item.split('-')[1])) {
-              arr2.push(item.split('-')[1])
-            }
-          }) 
-          setOrigins(arr2)
-      })
-  }, [])
+    const [criterias ,setCriterias] = useState([])
+    const [origins , setOrigins] = useState([])
+    const [criteria_List, setCriteria_List] = useState([])
+    useEffect(() => {
+        axios.get(`https://ic-gaming-node-js.vercel.app/mods/mod-api-v1`)
+        .then(res =>{
+            setMods(res.data)
+            let arr1 = []
+            let arr3 = []
+            res.data.forEach(mod => {
+                let arr = criterias
+                arr.push(mod.criteria+ '-' + mod.originGame)
+                arr3.push(mod.criteria)
+                arr1 = arr
+            })
+            let arr2 = []
+            arr1.forEach(item => {
+                if (!arr2.includes(item.split('-')[1])) {
+                arr2.push(item.split('-')[1])
+                }
+            }) 
+            setOrigins(arr2)
+
+            let arr = []
+            arr3.forEach(item => {
+                if (!arr.includes(item)) {
+                    arr.push(item)
+                }
+            })
+            setCriteria_List(arr)
+        })
+    }, [])
 
 
     useEffect(() => {
@@ -168,6 +172,14 @@ function GameDetailPage({game, isSecond}) {
         const element = document.querySelector('.item'+num)
         element.classList.add('active')
     }
+
+    let currentIndex = 0
+    useEffect(() => {
+        setInterval(() => {
+            currentIndex += 1
+            handleChangeCriteria(currentIndex)
+        }, 4500)
+    }, [])
 
     return ( 
         <div className='gameDetail'>
