@@ -6,10 +6,10 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 
-function Criteria({origin, handleChangeCriteria, isList = false, criteria = '', modDetail = false}) {
+function Criteria({origin, num = 0 ,handleChangeCriteria, isList = false, criteria = '', modDetail = false, handleHover = () => {}}) {
     
     const [indexCriteria, setIndexCriteria] = useState(0)
-    const [mods, setMods] = useState([])
+    const [mods, setMods] = useState()
     const [criterias , setCriterias] = useState([])
     const location = useLocation();
     criteria = modDetail == false ? location.pathname.split('/')[location.pathname.split('/').length - 1] : location.pathname.split('/')[location.pathname.split('/').length - 2]
@@ -47,19 +47,17 @@ function Criteria({origin, handleChangeCriteria, isList = false, criteria = '', 
                 })
             })
     }, [])
-
-    const handleHover = (num) => {
-        const active = document.querySelector('.active')
-        active.classList.remove('active')
-        const element = document.querySelector('.item'+num)
-        element.classList.add('active')
-    }
+    useEffect(() => {
+        if (mods != undefined) {
+            setIndexCriteria(num)
+        }
+    }, [num])
 
     return (
         <div id="criteria" className="col-lg-11">
             <p className='title col-lg-12'>Mods for {origin}:</p>
             <div className='criteria_list col-lg-12'>
-                {criterias.map((item, index) => {
+                { criterias.map((item, index) => {
                     if (isList == false) {
                         return (
                             <div onClick={() => {handleChangeCriteria(index); handleHover(index)}} key={index} className={index == indexCriteria ? 'active item item' + index : 'item item'+index}>

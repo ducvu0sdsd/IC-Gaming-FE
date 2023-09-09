@@ -162,9 +162,15 @@ function GameDetailPage({game, isSecond}) {
         setNum(n)
     }
 
+    const handleHover = (num) => {
+        const active = document.querySelector('.active')
+        active.classList.remove('active')
+        const element = document.querySelector('.item'+num)
+        element.classList.add('active')
+    }
+
     return ( 
         <div className='gameDetail'>
-            {console.log(origins)}
             <div className='boxChildren'></div>  
             <div className='col-lg-12 gameInfo '>
                 <div id='infoPC' className='col-lg-4 info item'>
@@ -233,9 +239,9 @@ function GameDetailPage({game, isSecond}) {
             </div>
             <div className='boxChildren'></div>
             {origins.includes(game.title) ? <>
-                <Criteria origin={game.title} handleChangeCriteria={handleChangeCriteria}/>
+                <Criteria origin={game.title} num={num} handleChangeCriteria={handleChangeCriteria} handleHover={handleHover}/>
                 <div className='boxChildren'></div>
-                <ModsElement origin={game.title} num={num} />
+                <ModsElement handleCallHover={handleChangeCriteria} origin={game.title} num={num} />
             </> : <></>}
             <div className='boxParent'></div>
             <div className='col-lg-12 col-12 video_des'>

@@ -4,7 +4,7 @@ import { useState,useEffect  } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function ModsElement({origin, num = 0}) {
+function ModsElement({origin, num = 0, handleCallHover}) {
 
     const [mods, setMods] = useState([])
     const [criterias , setCriterias] = useState([])
@@ -46,6 +46,7 @@ function ModsElement({origin, num = 0}) {
             index += 1
             i += width
         }
+        handleCallHover(index)
         document.querySelector('.wrapper-mods').style.transform = `translateX(${i * -1}px)`
     }
 
@@ -59,6 +60,7 @@ function ModsElement({origin, num = 0}) {
             i -= width
             index -= 1
         }
+        handleCallHover(index)
         document.querySelector('.wrapper-mods').style.transform = `translateX(${i * -1}px)`
     }
 
@@ -73,7 +75,7 @@ function ModsElement({origin, num = 0}) {
                         <Link to={'/mods/'+origin.toLowerCase().split(' ').join('-')+'/' + cri.toLowerCase().split(' ').join('-')} style={{textDecoration : 'none', color : 'black'}}><button className='btn-more'>More</button></Link> 
                         {mods.map((mod,index) => {
                             if (mod.criteria == cri) {
-                                return (<Link style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index} className='item'>
+                                return (<Link key={index} style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index} className='item'>
                                     <img src={mod.images[0]} width={'100%'}/>
                                     <div className='title'>{mod.title}</div>
                                 </div></Link>)
