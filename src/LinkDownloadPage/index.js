@@ -4,6 +4,7 @@ import GameRandom from '../ListGamesPage/GamesRandom'
 
 function LinkDownloadPage({links}) {
     const parts = links.title.split('"')[1].split('-')
+    
     return (
         <div id='link-download-page' className='col-lg-12'>
             <GameRandom type={'Game PC'}/>

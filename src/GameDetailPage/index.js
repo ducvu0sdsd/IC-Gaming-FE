@@ -12,6 +12,7 @@ import YouTube from 'react-youtube';
 import myVideo from './getlink.mp4'
 import thum from './getlink.png'
 import axios from 'axios'
+import GamesRandom from '../ListGamesPage/GamesRandom'
 
 function GameDetailPage({game, isSecond}) {
 
@@ -176,6 +177,7 @@ function GameDetailPage({game, isSecond}) {
 
     return ( 
         <div className='gameDetail'>
+            <GamesRandom type={'Game PC'}/>
             <div className='boxChildren'></div>  
             <div className='col-lg-12 gameInfo '>
                 <div id='infoPC' className='col-lg-4 info item'>
