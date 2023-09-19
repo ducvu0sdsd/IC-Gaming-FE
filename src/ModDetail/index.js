@@ -119,14 +119,18 @@ function ModDetail({mod}) {
                     <div className='col-lg-12 similar-mods'>
                         <div className='title col-lg-12'>SIMILAR MODS</div>
                         <div className='mods col-lg-12'>
-                            {mods.map((mod, index) => (
-                                <Link onClick={handle.handleScrollUp} key={index} className='item col-lg-5' style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}>
-                                    <div key={index}>
-                                        <img width='100%' src={mod.images[0]} />
-                                        {mod.title}
-                                    </div>
-                                </Link>
-                            ))}
+                            {mods.map((mod, index) => {
+                                if (index < 10) {
+                                    return(
+                                        <Link onClick={handle.handleScrollUp} key={index} className='item col-lg-5' style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}>
+                                            <div key={index}>
+                                                <img width='100%' src={mod.images[0]} />
+                                                {mod.title}
+                                            </div>
+                                        </Link>
+                                    )
+                                }
+                            })}
                         </div>
                     </div>
                 </div>

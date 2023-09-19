@@ -12,10 +12,29 @@ function ListModsPage({criteria, origin}) {
     const [mods, setMods] = useState([])
     const location = useLocation();
     const currentUrl = location.pathname.split('/')[location.pathname.split('/').length -1];
+    const shuffleArray = (array) => {
+        const shuffledArray = [];
+        array.forEach((game) => {
+            shuffledArray.push(game)
+        })
+        let currentIndex = shuffledArray.length;
+      
+        while (currentIndex > 0) {
+          const randomIndex = Math.floor(Math.random() * currentIndex);
+      
+          currentIndex--;
+      
+          const temporaryValue = shuffledArray[currentIndex];
+          shuffledArray[currentIndex] = shuffledArray[randomIndex];
+          shuffledArray[randomIndex] = temporaryValue;
+        }
+      
+        return shuffledArray;
+    }
     useEffect(() => {
         axios("https://ic-gaming-node-js.vercel.app/mods/get-by-criteria-origin?criteria="+criteria+"&origin="+origin) 
             .then (res => {
-                setMods(res.data)
+                setMods(shuffleArray(res.data))
             })
     },[criteria, origin])
     return (

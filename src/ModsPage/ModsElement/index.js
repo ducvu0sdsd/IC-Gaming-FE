@@ -8,10 +8,30 @@ function ModsElement({origin, num = 0, handleCallHover}) {
 
     const [mods, setMods] = useState([])
     const [criterias , setCriterias] = useState([])
+    const shuffleArray = (array) => {
+        const shuffledArray = [];
+        array.forEach((game) => {
+            shuffledArray.push(game)
+        })
+        let currentIndex = shuffledArray.length;
+      
+        while (currentIndex > 0) {
+          const randomIndex = Math.floor(Math.random() * currentIndex);
+      
+          currentIndex--;
+      
+          const temporaryValue = shuffledArray[currentIndex];
+          shuffledArray[currentIndex] = shuffledArray[randomIndex];
+          shuffledArray[randomIndex] = temporaryValue;
+        }
+      
+        return shuffledArray;
+    }
     useEffect(() => {
         axios.get(`https://ic-gaming-node-js.vercel.app/mods/get-by-origin?origin=`+origin)
             .then(res =>{
-                setMods(res.data)
+
+                setMods(shuffleArray(res.data))
                 res.data.forEach(mod => {
                     let arr = criterias
                     arr.push({criteria : mod.criteria, amount : 1})
@@ -71,16 +91,18 @@ function ModsElement({origin, num = 0, handleCallHover}) {
             <button onClick={() => handleNext()} className='btn-next btn'><i className='bx bxs-right-arrow' ></i></button>
             <div className='wrapper-mods'>
                 {criterias != undefined ? criterias.map((cri, index) => (
-                    <div key={index} className='mods col-lg-12'>
+                    <div key={index} className='mods-wrapper col-lg-12'>
                         <Link to={'/mods/'+origin.toLowerCase().split(' ').join('-')+'/' + cri.toLowerCase().split(' ').join('-')} style={{textDecoration : 'none', color : 'black'}}><button className='btn-more'>More</button></Link> 
-                        {mods.map((mod,index) => {
-                            if (mod.criteria == cri) {
-                                return (<Link key={index} style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index} className='item'>
-                                    <img src={mod.images[0]} width={'100%'}/>
-                                    <div className='title'>{mod.title}</div>
-                                </div></Link>)
-                            }
-                        })}
+                        <div className='mods col-lg-12'>
+                            {mods.map((mod,index) => {
+                                if (mod.criteria == cri) {
+                                    return (<Link key={index} style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index} className='item'>
+                                        <img src={mod.images[0]} width={'100%'}/>
+                                        <div className='title'>{mod.title}</div>
+                                    </div></Link>)
+                                }
+                            })}
+                        </div>
                     </div>
                 )) : ''}
             </div>

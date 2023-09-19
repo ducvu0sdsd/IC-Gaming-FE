@@ -10,7 +10,7 @@ function Provider({children}) {
         },
         handleScrollUp : () => {
             window.scrollTo({top: 0, behavior : 'smooth'})
-            window.location.reload()
+            // window.location.reload()
         },
     }
 

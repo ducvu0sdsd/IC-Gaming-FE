@@ -55,6 +55,7 @@ function GameDetailPage({game, isSecond}) {
                 }
             })
             setCriteria_List(arr)
+            
         })
     }, [])
 

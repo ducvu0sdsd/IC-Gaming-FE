@@ -34,39 +34,44 @@
         display: flex;
         transition: 0.5s;
 
-        & .mods {
-            padding: 0 50px;
-            display: flex;
-            flex-wrap: wrap;
-            // background-color: aqua;
-            padding-bottom: 70px;
+        & .mods-wrapper {
+            margin-bottom: 60px;
             position: relative;
-
             & .btn-more {
                 position: absolute;
                 padding: 7px 20px;
                 background: 0;
                 font-size: 20px;
-                bottom: 15px;
+                bottom: -12%;
                 left: 50%;
                 transform: translateX(-50%);
                 border-radius: 5px;
                 border: 1px solid #6a6a6a;
                 color: #3c3c3c;
+                z-index: 3;
             }
-    
-            & .item {
-                height: 250px;
-                width: 299px;
-                margin: 0 12px;
-                font-family: 'Montserrat', sans-serif;
+            & .mods {
+                // padding: 0 50px;
+                padding-left: 60px;
                 display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                cursor: pointer;
-    
-                & .title {
-                    height: 55px;
+                flex-wrap: wrap;
+                max-height: 490px;
+                padding-bottom: 70px;
+                overflow: hidden;
+        
+                & .item {
+                    height: 250px;
+                    width: 320px;
+                    margin: 0 7px;
+                    font-family: 'Montserrat', sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    cursor: pointer;
+        
+                    & .title {
+                        height: 55px;
+                    }
                 }
             }
         }
