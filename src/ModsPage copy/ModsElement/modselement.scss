@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+.mods-element {
+    // background-color: antiquewhite;
+    overflow: hidden;
+    position: relative;
+
+    & .btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-70%);
+        font-size: 30px;
+        height: 200px;
+        background-color: #bababa67;
+        color: white;
+        border: 0;
+        z-index: 1;
+    }
+
+    & .btn:hover {
+        background-color: #bababa67;
+        color: white;
+    }
+
+    & .btn-prev {
+        left: 0;
+    }
+
+    & .btn-next {
+        right: 0;
+    }
+
+    & .wrapper-mods {
+        display: flex;
+        transition: 0.5s;
+
+        & .mods-wrapper {
+            margin-bottom: 60px;
+            position: relative;
+            & .btn-more {
+                position: absolute;
+                padding: 7px 20px;
+                background: 0;
+                font-size: 20px;
+                bottom: -12%;
+                left: 50%;
+                transform: translateX(-50%);
+                border-radius: 5px;
+                border: 1px solid #6a6a6a;
+                color: #3c3c3c;
+                z-index: 3;
+            }
+            & .mods {
+                // padding: 0 50px;
+                padding-left: 60px;
+                display: flex;
+                flex-wrap: wrap;
+                max-height: 490px;
+                padding-bottom: 70px;
+                overflow: hidden;
+                width: 100%;
+                background-color: aquamarine;
+        
+                & .item {
+                    height: 250px;
+                    width: 23%;
+                    margin: 0 7px;
+                    font-family: 'Montserrat', sans-serif;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+                    cursor: pointer;
+        
+                    & .title {
+                        height: 55px;
+                    }
+                }
+            }
+        }
+    }
+}
