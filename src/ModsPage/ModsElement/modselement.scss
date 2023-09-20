@@ -58,10 +58,11 @@
                 max-height: 490px;
                 padding-bottom: 70px;
                 overflow: hidden;
+                width: 100%;
         
                 & .item {
                     height: 250px;
-                    width: 320px;
+                    width: 23%;
                     margin: 0 7px;
                     font-family: 'Montserrat', sans-serif;
                     display: flex;

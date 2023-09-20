@@ -96,7 +96,7 @@ function ModsElement({origin, num = 0, handleCallHover}) {
                         <div className='mods col-lg-12'>
                             {mods.map((mod,index) => {
                                 if (mod.criteria == cri) {
-                                    return (<Link key={index} style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index} className='item'>
+                                    return (<Link className='item' key={index} style={{textDecoration : 'none', color : 'black'}} to={'/mods/'+mod.originGame.toLowerCase().split(' ').join('-')+'/'+mod.criteria.toLowerCase().split(' ').join('-')+'/'+ mod.title.toLowerCase().split(' ').join('-')}><div key={index}>
                                         <img src={mod.images[0]} width={'100%'}/>
                                         <div className='title'>{mod.title}</div>
                                     </div></Link>)
