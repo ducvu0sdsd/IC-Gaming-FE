@@ -245,12 +245,12 @@ function GameDetailPage({ game, isSecond }) {
 
                 </div>
             </div>
-            {/* <div className='boxChildren'></div>
+            <div className='boxChildren'></div>
             {origins.includes(game.title) ? <>
-                <Criteria origin={game.title} num={num} handleChangeCriteria={handleChangeCriteria} handleHover={handleHover}/>
+                <Criteria origin={game.title} num={num} handleChangeCriteria={handleChangeCriteria} handleHover={handleHover} />
                 <div className='boxChildren'></div>
                 <ModsElement handleCallHover={handleChangeCriteria} origin={game.title} num={num} />
-            </> : <></>} */}
+            </> : <></>}
             <div className='boxParent'></div>
             <div className='col-lg-12 col-12 video_des'>
                 <div className='video col-lg-6 col-11'>

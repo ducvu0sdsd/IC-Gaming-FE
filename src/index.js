@@ -12,8 +12,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider>
     <Router>
-    <App />
-   </Router>
+      <App />
+    </Router>
   </Provider>
 );
 
